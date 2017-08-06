@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 20170802080422) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name",       default: "", null: false
-    t.string   "email",                   null: false
+    t.string   "email",      default: "", null: false
     t.string   "prefecture", default: "", null: false
     t.string   "city",       default: "", null: false
     t.datetime "created_at",              null: false

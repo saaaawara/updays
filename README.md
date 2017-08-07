@@ -1,24 +1,36 @@
-# README
+# Hack_U 2017 UpdayS
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 概要
+UpdaySアプリケーションのサーバ．
+    - ユーザ情報管理
+    - イベント情報管理
 
-Things you may want to cover:
+## 使い方
+改良するなどの理由でこのアプリケーションを動かす場合は，まずはリポジトリを手元にクローンしてください．その後，次のコマンドで必要になるRuby Gemsをインストールします．
 
-* Ruby version
+...
+$ bundle install
+...
 
-* System dependencies
+その後，データベースへのマイグレーションを実行します．
 
-* Configuration
+...
+$ rails db:migrate
+...
 
-* Database creation
+最後に，テストを実行してうまく動作しているかどうか確認してください．
 
-* Database initialization
+...
+$ rails test
+...
 
-* How to run the test suite
+テストが無事に通ったら，Railsサーバを立ち上げる準備が整っているはずです．
 
-* Services (job queues, cache servers, search engines, etc.)
+...
+$ rails server
+...
 
-* Deployment instructions
+## バージョン
 
-* ...
+- ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-linux]
+- Rails 5.0.5

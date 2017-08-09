@@ -18,7 +18,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       #     email: "miura@example.com",
       #     prefecture: "静岡県",
       #     city: "浜松市"  } }, as: :json
-      post api_v1_users_url, params: { user: { } }, as: :json
+      post api_v1_signup_url, params: { user: { } }, as: :json
     end
 
     assert_response 201

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     # has_many :schedules
     # attr_accessor :remember_token
+    has_many :event
 
     # 永続セッションのためにユーザーをデータベースに記憶する
     def remember

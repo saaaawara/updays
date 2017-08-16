@@ -19,10 +19,19 @@ Rails.application.routes.draw do
       # post '/task', to: 'schedules#create'
       delete '/schedules', to: 'schedules#destroy'
 
+      # daily
+      post '/upload/:user_id', to: 'dailies#upload'
+
+      # event
+
+      # crawler
+      get '/crawler', to: 'crawler#crawler'
+
       resources :users
       resources :sessions
       resources :schedules, except: :destroy
       resources :dailies
+      resources :events
 
       # delete '/schedule', to: 'schedules#destroy'
     end

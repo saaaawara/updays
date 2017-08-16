@@ -6,7 +6,7 @@ class CreateDailies < ActiveRecord::Migration[5.0]
       # t.integer :schedule_id, null: false, default: 0, comment: 'スケジュールID'
       t.string :comment, null: false, default: "", comment: '内容'
       t.string :image, null: false, default: "", comment: '画像'
-      t.date :date, null: false, comment: '日付'
+      t.date :date, null: false, default: DateTime.now, comment: '日付'
       t.string :jenre, null: false, default: "", comment: 'ジャンル'
 
 

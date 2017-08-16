@@ -10,18 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170815131449) do
+ActiveRecord::Schema.define(version: 20170816141725) do
 
   create_table "dailies", force: :cascade do |t|
-    t.string   "title",      default: "", null: false
+    t.string   "title",      default: "",           null: false
+    t.integer  "user_id",    default: 0,            null: false
+    t.string   "comment",    default: "",           null: false
+    t.string   "image",      default: "",           null: false
+    t.date     "date",       default: '2017-08-17', null: false
+    t.string   "jenre",      default: "",           null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["user_id"], name: "index_dailies_on_user_id"
+  end
+
+  create_table "events", force: :cascade do |t|
     t.integer  "user_id",    default: 0,  null: false
-    t.string   "comment",    default: "", null: false
-    t.string   "image",      default: "", null: false
-    t.date     "date",                    null: false
-    t.string   "jenre",      default: "", null: false
+    t.string   "events",     default: "", null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.index ["user_id"], name: "index_dailies_on_user_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "schedules", force: :cascade do |t|

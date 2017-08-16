@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+    # has_many :schedules
     # attr_accessor :remember_token
 
     # 永続セッションのためにユーザーをデータベースに記憶する

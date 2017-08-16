@@ -11,6 +11,9 @@ require "action_view/railtie"
 require "action_cable/engine"
 # require "sprockets/railtie"
 require "rails/test_unit/railtie"
+#
+# require "carrierwave"
+# require "carrierwave/orm/activerecord"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,6 +29,9 @@ module UpdayS
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # 
+    # config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
 
     # cookieをサポートするRack middlewareを読み込む
     config.middleware.use ActionDispatch::Cookies

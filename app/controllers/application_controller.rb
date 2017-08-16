@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
     include ActionController::Cookies
     # sessionを全コントローラーで使用するため
     include SessionsHelper
+    #
 
     # cookieの試しとして作成した
     def root

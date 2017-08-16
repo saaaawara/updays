@@ -18,7 +18,7 @@ module Api
         p "start users show"
         if(logged_in?(params[:id]))
           p "login"
-          render 'api/v1/show', formats: 'json', handlers: 'jbuilder'
+          render 'api/v1/users/show', formats: 'json', handlers: 'jbuilder'
         else
           p "not login"
         end
@@ -37,7 +37,7 @@ module Api
         if @user.save
           log_in @user
           remember @user
-          render 'api/v1/create', formats: 'json', handlers: 'jbuilder'
+          render 'api/v1/users/create', formats: 'json', handlers: 'jbuilder'
         else
           render json: @user.errors, status: :unprocessable_entity
         end

@@ -25,7 +25,9 @@ Rails.application.routes.draw do
       # event
 
       # crawler
-      get '/crawler', to: 'crawler#crawler'
+      post '/crawler', to: 'crawler#crawler'
+      post '/search', to: 'crawler#search'
+      post '/event_ai', to: 'crawler#event_ai'
 
       resources :users
       resources :sessions

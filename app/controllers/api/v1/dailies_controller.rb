@@ -17,7 +17,7 @@ module Api
             # create daily
             def create
                 p "start daily create"
-                p "AAAAAAA"
+                # p "AAAAAAA"
 
                 @daily = Daily.where(user_id: daily_params[:user_id].to_s).order("updated_at DESC").first
                 p @daily
@@ -25,13 +25,7 @@ module Api
                     comment: daily_params[:comment],
                     date: daily_params[:date],
                     jenre: daily_params[:jenre])
-                # @daily[:title] = daily_params[:title]
-                # @daily[:comment] = daily_params[:comment]
-                # @daily[:date] = daily_params[:date]
-                # @daily[:jenre] = daily_params[:jenre]
-
-
-
+                
                 # @daily = Daily.new(daily_params)
 
                 # @dialy = Daily.new(image: params[:image])

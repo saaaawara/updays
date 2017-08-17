@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
       # daily
       post '/upload/:user_id', to: 'dailies#upload'
+      post 'test_create', to: 'dailies#test_create'
 
       # event
 

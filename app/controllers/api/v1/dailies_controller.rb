@@ -14,6 +14,15 @@ module Api
                 render 'api/v1/dailies/show', formats: 'json', handlers: 'jbuilder'
             end
 
+            # test create
+            def test_create
+                p "start test_create"
+                @daily = Daily.new(user_id: params[:user_id], title: params[:title], 
+                    comment: params[:comment], date: params[:date], 
+                    jenre: params[:jenre])
+                @daily.save
+            end
+
             # create daily
             def create
                 p "start daily create"

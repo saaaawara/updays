@@ -20,6 +20,7 @@ module Api
             # create schedule
             def create
                 p "start schedule create"
+                schedule_params[:user_id] = schedule_params[:user_id].to_s
                 @schedule = Schedule.new(schedule_params)
                 p @schedule[:user_id]
                 # logined?がいる

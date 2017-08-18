@@ -29,6 +29,12 @@ Rails.application.routes.draw do
       post '/crawler', to: 'crawler#crawler'
       post '/search', to: 'crawler#search'
       post '/event_ai', to: 'crawler#event_ai'
+      get '/timer', to: 'crawler#timer'
+
+      # image
+      get '/images', to: 'images#index'
+      post '/images', to: 'images#create'
+      delete '/images', to: 'images#destroy'
 
       resources :users
       resources :sessions

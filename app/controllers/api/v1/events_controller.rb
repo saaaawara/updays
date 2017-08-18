@@ -17,10 +17,16 @@ module Api
             # create events
             def create
                 p "start event"
-                @event = Event.new(event_params)
-                if @event.save
-
-                end
+                user_id = event_params[:user_id].to_s
+                tmp_array = event_params[:jenre].split
+                p tmp_array
+                tmp_array.each { |jenre|
+                    p jenre
+                    @event = Event.new(user_id: user_id,
+                        jenre: jenre)
+                    if @event.save
+                    end
+                }
             end
 
             # destroy events

@@ -148,7 +148,7 @@ module Api
                     if event["symd"] == event["eymd"]
                         p "同じ"
                         if @schedules.find_by(date: event["symd"])
-                            p "NG"
+                            # p "NG"
                             event["name"] = ""
                         else
                             p "OK"

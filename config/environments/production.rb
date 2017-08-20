@@ -76,17 +76,23 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # for email setting
-  # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 }
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #     :address => 'smtp.gmail.com',
-  #     :port => 587,
-  #     :domain => 'smtp.gmail.com',
-  #     :user_name => 'sawara04.o@gmail.com',
-  #     :password => 'pwyahpojssyypvap',
-  #     :authentication => :plain,
-  #     :enable_starttls_auto => true
-  # }
+  # for email
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = {  host: 'https://updays.herokuapp.com/' }
+  # config.action_mailer.default_url_options = {  host: '10.75.220.124', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:                 587,
+    address:              'smtp.gmail.com',
+    # address: 'smtp.office365.com',
+    domain:               'smtp.gmail.com',
+    user_name:            'sawara04.o@gmail.com',
+    # user_name: 'ogasawara.kyoji.17@shizuoka.ac.jp',
+    password:             'gjhtjzbsaxvijgna',
+    # password: 'fj67zi99',
+    authentication:       'plain',
+    # authentication: 'login',
+    enable_starttls_auto: true
+  }
 end

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+    いろんなイベントがいっぱいあるよ！<br><br>
+    <% @result.each do |r| %>
+      <% if r[1].nil? %>
+      <% else %>
+        < <%= r[0][:jenre] %> ><br>
+        ■<%= r[1]["name"] %><br>
+        [日時]<%= r[1]["symd"] %><br>
+        [場所]<%= r[1]["place"] %><br>
+        <%= r[1]["url"] %><br><br>
+      <% end %>
+    <% end %>
+  </body>
+</html>

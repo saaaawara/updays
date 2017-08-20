@@ -4,6 +4,7 @@ json.array! @events do |event|
     json.eymd event["eymd"]
     json.name event["name"]
     json.url event["url"]
+    json.jenre @categry
 end
 
 # json.set! :event, @events

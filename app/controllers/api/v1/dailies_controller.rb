@@ -54,6 +54,12 @@ module Api
 
             # destroy daily
             def destroy
+                @daily = Daily.find_by(user_id: params[:user_id].to_s,
+                    title: params[:title],
+                    date: params[:date],
+                    jenre: params[:jenre])
+                p @daily
+                @daily.destroy
             end
 
             private

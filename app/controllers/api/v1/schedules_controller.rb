@@ -12,8 +12,21 @@ module Api
                 # p "oooooo"
                 p params[:id]
                 # p "pppppppppppppp"
+                @schedule_count = Schedule.where(user_id: params[:id]).count
                 @schedules = Schedule.where(user_id: params[:id])
                 p @schedules
+                @has_event = Event.where(user_id: params[:id])
+                @has_event_count = @has_event.count
+                @achieve_count = 0
+                @has_event.each { |e|
+                    if Daily.find_by(user_id: params[:id], jenre: e.jenre)
+                        p e
+                        @achieve_count = @achieve_count + 1
+                    else
+                    end
+                }
+                p @has_event_count
+                p @achieve_count
                 render 'api/v1/schedules/show', formats: 'json', handlers: 'jbuilder'
             end
 
@@ -32,7 +45,7 @@ module Api
 
             def destroy
                 # p schedule_params[:contents]
-                @schedule = Schedule.find_by(user_id: schedule_params[:user_id],
+                @schedule = Schedule.find_by(user_id: schedule_params[:user_id].to_s,
                     contents: schedule_params[:contents], date: schedule_params[:date])
                 # p schedule_params.user_id
                 p @shecule

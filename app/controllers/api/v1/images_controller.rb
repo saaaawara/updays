@@ -26,6 +26,12 @@ module Api
                 @image.destroy
             end
 
+            # hash tag
+            def hash_tag
+                @images = Image.where(jenre: params[:jenre])
+                render 'api/v1/images/hashtag', formats: 'json', handlers: 'jbuilder'
+            end
+
             private
               def image_params
                 params.permit(:image, :jenre)

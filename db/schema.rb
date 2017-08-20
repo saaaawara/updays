@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170817151349) do
     t.integer  "user_id",    default: 0,            null: false
     t.string   "comment",    default: "",           null: false
     t.string   "image",      default: "",           null: false
-    t.date     "date",       default: '2017-08-17', null: false
+    t.date     "date",       default: '2017-08-19', null: false
     t.string   "jenre",      default: "",           null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false

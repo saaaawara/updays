@@ -55,10 +55,10 @@ module Api
 
             # search ivent
             def search
-                user_id = params[:user_id]
+                user_id = params[:user_id].to_s
                 symd = params[:symd]
                 eymd = params[:eymd]
-                categry = params[:jenre]
+                @categry = params[:jenre]
                 @user = User.find_by(id: user_id)
                 if @user
                     place = @user[:prefecture]
@@ -84,7 +84,7 @@ module Api
                 http.use_ssl = true
                 http.verify_mode = OpenSSL::SSL::VERIFY_NONE
                 req = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
-                req.body = {'categry' => categry,
+                req.body = {'categry' => @categry,
                             'place' => place,
                             'symd' => symd,
                             'eymd' => eymd}.to_json
@@ -104,13 +104,13 @@ module Api
 
             # event_ai
             def event_ai
-                user_id = params[:user_id]
+                user_id = params[:user_id].to_s
                 symd = Date.today
-                eymd = Date.today + 150
+                eymd = Date.today + 30
                 place = User.find_by(id: user_id).prefecture
                 categry = Event.where(user_id: user_id).order("RANDOM()").first.jenre
                 # categry = "海水浴場"
-                categry = "花火"
+                # categry = "花火"
                 symd = symd.to_s.gsub('-', '/')
                 eymd = eymd.to_s.gsub('-', '/')
                 
@@ -168,6 +168,75 @@ module Api
                 p @result
 
                 render 'api/v1/crawler/event_ai', formats: 'json', handlers: 'jbuilder'
+            end
+
+            # send event for email
+            def send_mail
+                user_id = params[:user_id].to_s
+                @user = User.find_by(id: user_id)
+                p @user
+                
+                symd = Date.today
+                eymd = Date.today + 30
+                place = User.find_by(id: user_id).prefecture
+                @has_categry = Event.where(user_id: user_id)
+
+                symd = symd.to_s.gsub('-', '/')
+                eymd = eymd.to_s.gsub('-', '/')
+
+                @result = []
+                # @result_jenre = []
+                @has_categry.each { |jenre|
+                    categry = jenre.jenre
+                    # @goEvent = []
+                    # p @goEvent
+
+                    # local
+                    # uri = URI.parse('localhost:3000/api/v1/crawler')
+                    # heroku
+                    uri = URI.parse("https://powerful-lake-26344.herokuapp.com/api")
+
+                    http = Net::HTTP.new(uri.host, uri.port)
+                    http.use_ssl = true
+                    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+                    req = Net::HTTP::Post.new(uri.request_uri, 
+                        initheader = {'Content-Type' =>'application/json'})
+                    req.body = {'categry' => categry,
+                                'place' => place,
+                                'symd' => symd,
+                                'eymd' => eymd}.to_json
+
+                    p "request"
+                    p req
+                    puts req.body
+                    res = http.request(req)
+                    p "response"
+                    p CGI.unescape(res.body)
+                    tmp = CGI.unescape(res.body)
+                    @events = JSON.parse(tmp)
+
+                    # no jenre
+                    # p @events
+                    # @result.push(@events.shuffle.first)
+
+                    p @event
+                    @goEvent = [jenre: categry]
+                    # @goEvent = []
+                    @goEvent.push(@events.shuffle.first)
+                    # p @goEvent
+                    # @goEvent.push(categry)
+                    
+                    @result.push(@goEvent)
+                    # @result.push(jenre: categry)
+                }
+
+                p "result"
+                p @result
+                # p @result.count
+                # p @result[0]["place"]
+
+                # send mail
+                NoticificationMailer.send_confirm_to_user(@user,@result).deliver
             end
 
             def timer

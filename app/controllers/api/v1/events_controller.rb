@@ -31,6 +31,10 @@ module Api
 
             # destroy events
             def destroy
+                @event = Event.find_by(user_id: event_params[:user_id].to_s,
+                    jenre: event_params[:jenre])
+                p @event
+                @event.destroy
             end
 
             private
